@@ -42,8 +42,8 @@ Stack.prototype.toString = function () {
   let resultString = ''
   this.items.forEach((item) => {
     resultString +=
-      typeof item === 'object' ? item.prototype.toString.call(item) : item + ' '
-    return resultString.replace(/\s$/g, '')
+      typeof item === 'object' ? item.prototype.toString(item) : item + ' '
+    return resultString.trim()
   })
 }
 
@@ -69,7 +69,7 @@ function decToBin(decNum) {
   }
   let resultNumStr = ''
   while (!stackObj.isEmpty()) {
-    resultNumStr += stackObj.pop() 
+    resultNumStr += stackObj.pop()
   }
   return resultNumStr
 }
