@@ -64,3 +64,24 @@ PriorityQueue.prototype.enQueue = function (element, proiroty) {
 PriorityQueue.prototype.deQueue = function () {
   return this.items.shift()
 }
+//查看队列的第一个元素
+PriorityQueue.prototype.front = function () {
+  return this.items[0]
+}
+//判断队列是否为空
+PriorityQueue.prototype.isEmpty = function () {
+  return this.items.length === 0
+}
+//判断队列内有多少个元素
+PriorityQueue.prototype.size = function () {
+  return this.items.length
+}
+//将队列中的元素 转成字符串的格式
+PriorityQueue.prototype.toString = function () {
+  let queueStr = ''
+  this.items.forEach((item) => {
+    queueStr +=
+      typeof item === 'object' ? item.prototype.toString(item) : item + ''
+  })
+  return queueStr.trim()
+}
