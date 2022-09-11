@@ -47,12 +47,20 @@ PriorityQueue.prototype.enQueue = function (element, proiroty) {
           //拿到当前相同优先级的最后一个元素的index+1 调用splice插入
           let index = proiroty.lastIndexOf(priorityElement.priority) + 1
           this.items.splice(index, 0, priorityElement)
-          //如果不相等 直接插入
+          //同时break掉循环
+          break
         } else {
+          //如果不相等则不需要做优先级处理 直接插入
           let index = proiroty.IndexOf(priorityElement.priority) + 1
           this.items.splice(index, 0, priorityElement)
+          //同时break掉循环
+          break
         }
       }
     }
   }
+}
+//移除队列的第一项 并返回第一项的的元素
+PriorityQueue.prototype.deQueue = function () {
+  return this.items.shift()
 }
