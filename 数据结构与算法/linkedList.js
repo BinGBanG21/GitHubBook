@@ -62,10 +62,21 @@ LinkedList.prototype.size = function () {
 }
 //把链表中的元素按字符串的形式返回
 LinkedList.prototype.toString = function () {
-  let queueStr = ''
-  this.items.forEach((item) => {
-    queueStr +=
-      typeof item === 'object' ? item.prototype.toString(item) : item + ''
-  })
-  return queueStr.trim()
+  let linkedStr = ''
+  //如果链表为空 return空字符串
+  if (this.length === 0) {
+    return linkedStr
+  } else {
+    //链表大多数方法的实现都需要current 保证head的正确指向
+    let currentData = this.head
+    //利用currentData去判断是否完成循环(不要用next属性去判断 那样会剩一个)
+    while (currentData) {
+      linkedStr +=
+        typeof currentData.data === 'object'
+          ? currentData.data.prototype.toString(currentData.data)
+          : currentData.data + ''
+      currentData = currentData.next
+    }
+    return linkedStr.trim()
+  }
 }
