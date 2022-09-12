@@ -28,6 +28,24 @@ function LinkedList(params) {
   this.length = 0
 }
 //向链表末尾添加一个新的项
+LinkedList.prototype.append = function (data) {
+  let LinkedData = new Node(data)
+  //如果是链表为空 则当前节点为第一个节点
+  if (this.length === 0) {
+    this.head = LinkedData
+  } else {
+    //如果不为空（最后一个节点的next属性指向null） 则放入最后
+    //需要一个当前变量 用作查找（不能直接用this.head判断 否则判断到最后this.head的指向就错了）
+    let currentData = this.head
+    while (currentData.next) {
+      currentData = currentData.next
+    }
+    //如果推出循环证明currentData=null
+    currentData.next = LinkedData
+  }
+  //同时改变length的属性
+  this.length += 1
+}
 //向链表特定位置添加一个新的项
 //获取对应位置的元素
 //返回元素在该链表中的索引 如果没有该元素返回-1
@@ -35,5 +53,19 @@ function LinkedList(params) {
 //从链表的特定位置移除一项
 //从链表中移除一项
 //判断链表是否为空
+LinkedList.prototype.isEmpty = function () {
+  return this.length === 0
+}
 //返回链表中元素的个数
+LinkedList.prototype.size = function () {
+  return this.length
+}
 //把链表中的元素按字符串的形式返回
+LinkedList.prototype.toString = function () {
+  let queueStr = ''
+  this.items.forEach((item) => {
+    queueStr +=
+      typeof item === 'object' ? item.prototype.toString(item) : item + ''
+  })
+  return queueStr.trim()
+}
