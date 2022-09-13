@@ -22,7 +22,7 @@ function LinkedNode(data) {
   this.data = data
   this.next = null
 }
-function LinkedList(params) {
+function LinkedList() {
   this.head = null
   //记录链表的长度
   this.length = 0
@@ -46,7 +46,38 @@ LinkedList.prototype.append = function (data) {
   //同时改变length的属性
   this.length += 1
 }
-//向链表特定位置添加一个新的项
+//向链表指定位置添加一个新的项
+LinkedList.prototype.insert = function (position, data) {
+  //首先对position进行一个越界判断
+  if (position < 0 || position > this.length) {
+    return false
+  }
+  //创建数据
+  let linkedData = new LinkedNode(data)
+  //判断位置插入
+  //位置是0
+  if (position === 0) {
+    linkedData.next = this.head
+    this.head = linkedData
+  } else {
+    //位置正常的情况
+    //计数器+循环 因为是替换 所以要找到previous节点  再找到current节点 然后替换
+    //即使positon指向null 下面的代码也正常判断执行
+    let curIndex = 0
+    let preData = null
+    let curData = this.head
+    while (curIndex === position) {
+      preData = currentData
+      curData = curData.next
+      curIndex++
+    }
+    preData.next = linkedData
+    linkedData.next = curData
+  }
+  //不要忘记统计元素个数
+  this.length += 1
+  return true
+}
 //获取对应位置的元素
 //返回元素在该链表中的索引 如果没有该元素返回-1
 //修改某个位置的元素
