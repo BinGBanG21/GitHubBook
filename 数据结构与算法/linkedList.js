@@ -79,6 +79,20 @@ LinkedList.prototype.insert = function (position, data) {
   return true
 }
 //获取对应位置的元素
+LinkedList.prototype.get = function (position) {
+  //首先进行越界判断
+  if (position < 0 || position >= this.length) {
+    return unll
+  }
+  //获取对应的数据 如果position=0 表示获取第一个元素
+  let curIndex = 0
+  let curData = this.head
+  while (curIndex < position) {
+    curData = curData.next
+    curIndex += 1
+  }
+  return curData
+}
 //返回元素在该链表中的索引 如果没有该元素返回-1
 //修改某个位置的元素
 //从链表的特定位置移除一项
