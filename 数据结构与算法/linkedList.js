@@ -94,7 +94,38 @@ LinkedList.prototype.get = function (position) {
   return curData
 }
 //返回元素在该链表中的索引 如果没有该元素返回-1
-//修改某个位置的元素
+LinkedList.prototype.indexOf = function (data) {
+  //都需要两个变量 curData= this.head 从头开始找  curIndex 记录当前索引
+  let curIndex = 0
+  let curData = this.head
+  //如果curData存在
+  //（1）判断找到数据和需求数据是否相等 相等返回索引
+  //（2）不相等证明没有查找完 递增index
+  while (curData) {
+    if (curData === data) {
+      return curIndex
+    } else {
+      curData = curData.next
+      curIndex++
+    }
+  }
+}
+//修改某个位置的元素 返回布尔值
+//和get方法的实现类似
+LinkedList.prototype.update = function (position, newData) {
+  //首先进行越界判断
+  if (position < 0 || position >= this.length) {
+    return unll
+  }
+  //获取对应的数据 如果position=0 表示获取第一个元素
+  let curIndex = 0
+  let curData = this.head
+  while (curIndex < position) {
+    curData = curData.next
+    curIndex += 1
+  }
+  curData = newData
+}
 //从链表的特定位置移除一项
 //从链表中移除一项
 //判断链表是否为空
