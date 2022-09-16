@@ -115,7 +115,7 @@ LinkedList.prototype.indexOf = function (data) {
 LinkedList.prototype.update = function (position, newData) {
   //首先进行越界判断
   if (position < 0 || position >= this.length) {
-    return unll
+    return null
   }
   //获取对应的数据 如果position=0 表示获取第一个元素
   let curIndex = 0
@@ -127,6 +127,22 @@ LinkedList.prototype.update = function (position, newData) {
   curData = newData
 }
 //从链表的特定位置移除一项
+LinkedList.prototype.removeAt = function (position) {
+  //首先进行越界判断
+  if (position < 0 || position >= this.length) {
+    return null
+  }
+  //找到元素 移除（找到前面和后面的 next属性要正确）
+  //position = 0
+  if (position === 0) {
+    this.head = this.head.next
+  } else {
+    let curIndex = 0
+    let preData = null
+    let curData = this.head
+  }
+  return true
+}
 //从链表中移除一项
 //判断链表是否为空
 LinkedList.prototype.isEmpty = function () {
