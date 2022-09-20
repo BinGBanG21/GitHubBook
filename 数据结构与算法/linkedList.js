@@ -126,8 +126,11 @@ LinkedList.prototype.update = function (position, newData) {
   }
   curData = newData
 }
-//从链表的特定位置移除一项
+//从链表的特定位置移除一项 并返回删除的数据
 LinkedList.prototype.removeAt = function (position) {
+  //定义到外面 下方能拿到
+  let curData = this.head
+
   //首先进行越界判断
   if (position < 0 || position >= this.length) {
     return null
@@ -139,9 +142,16 @@ LinkedList.prototype.removeAt = function (position) {
   } else {
     let curIndex = 0
     let preData = null
-    let curData = this.head
+    while (curIndex++ < position) {
+      //先确preData的值 然后确定curData的值
+      preData = curData
+      curData = curData.next
+    }
+    //前一个节点的next属性直接指向后一个节点的next属性
+    preData.next = curData.next
   }
-  return true
+  this.length - 1
+  return curData.data
 }
 //从链表中移除一项
 //判断链表是否为空
@@ -154,7 +164,7 @@ LinkedList.prototype.size = function () {
 }
 //把链表中的元素按字符串的形式返回
 LinkedList.prototype.toString = function () {
-  let linkedStr = ''
+  let linkedStr = ""
   //如果链表为空 return空字符串
   if (this.length === 0) {
     return linkedStr
@@ -164,9 +174,9 @@ LinkedList.prototype.toString = function () {
     //利用currentData去判断是否完成循环(不要用next属性去判断 那样会剩一个)
     while (currentData) {
       linkedStr +=
-        typeof currentData.data === 'object'
+        typeof currentData.data === "object"
           ? currentData.data.prototype.toString(currentData.data)
-          : currentData.data + ''
+          : currentData.data + ""
       currentData = currentData.next
     }
     return linkedStr.trim()
