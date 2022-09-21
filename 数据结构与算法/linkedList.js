@@ -154,6 +154,10 @@ LinkedList.prototype.removeAt = function (position) {
   return curData.data
 }
 //从链表中移除一项
+LinkedList.prototype.remove = function (element) {
+  //前面已经封装了两个方法 indexOf 和 removeAt
+  return !!this.removeAt(this.indexOf(element))
+}
 //判断链表是否为空
 LinkedList.prototype.isEmpty = function () {
   return this.length === 0
